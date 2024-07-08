@@ -19,41 +19,36 @@ function displayItems() {
 function onAddItemSubmit(e) {
     e.preventDefault();
 
-    // idk what the .value thing does
-    const newItem = itemInput.value   
+    const newItem = itemInput.value.toLowerCase(); // Normalize case when adding
 
-    // Validate Input
     if (newItem === '') {
         alert('Please add an item');
         return;
     }
 
-    // Check for edit-mode
     if (isEditMode) {
         const itemToEdit = itemList.querySelector('.edit-mode');
 
         removeItemFromStorage(itemToEdit.textContent);
+        itemToEdit.remove(); // Remove the old item from the DOM
         itemToEdit.classList.remove('edit-mode');
         isEditMode = false;
-    }
-    else {
-        if(CheckIfItemExists(newItem)) {
+    } else {
+        if (CheckIfItemExists(newItem)) {
             alert('That item already exists!');
             return;
         }
     }
-    
-    // Create item DOM Element
-    addItemToDOM(newItem);
 
-    // Add item to local storage
+    addItemToDOM(newItem);
     addItemToStorage(newItem);
 
     checkUI();
 
     itemInput.value = '';
-
 }
+
+
 
 function addItemToDOM(item) {
     // Create List Item
@@ -97,11 +92,13 @@ function addItemToStorage(item) {
     //     itemsFromStorage = JSON.parse(localStorage.getItem('items'));
     // }
 
-    itemsFromStorage.push(item);
+    itemsFromStorage.push(item.toLowerCase());
 
     // Convert to JSON String and set to local storage
     localStorage.setItem('items', JSON.stringify(itemsFromStorage));  
 }
+
+
 
 function getItemFromStorage() {
     let itemsFromStorage;
@@ -123,15 +120,14 @@ function onClickItem(e) {
     else {
         setItemToEdit(e.target);
     }
-
 }
+
 
 function CheckIfItemExists(item) {
-    const itemsFromStorage = getItemFromStorage();
-
-    return itemsFromStorage.includes(item);
-    
+    const itemsFromStorage = getItemFromStorage().map(i => i.toLowerCase());
+    return itemsFromStorage.includes(item.toLowerCase());
 }
+
 
 function setItemToEdit(item) {
     isEditMode = true;
@@ -147,20 +143,19 @@ function setItemToEdit(item) {
 }
 
 // Remove
-function removeItem(e) {
-    // if (e.target.parentElement.classList.contains('remove-item')){
-        if (confirm('Are you sure?')) {
-            item.remove();
+function removeItem(item) {
+    if (confirm('Are you sure?')) {
+        item.remove();
 
-            removeItemFromStorage(item.textContent);
-            
-            // when we delete items and there are no left
-            checkUI();  
-        }
-      
-    
-     
+        removeItemFromStorage(item.textContent);
+        
+        // when we delete items and there are no left
+        checkUI();  
+    }
 }
+
+
+
 
 function removeItemFromStorage(item) {
     let itemsFromStorage = getItemFromStorage();
