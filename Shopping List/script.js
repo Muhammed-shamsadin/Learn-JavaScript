@@ -100,28 +100,53 @@ function getItemFromStorage() {
     return itemsFromStorage;
 }
 
+function onClickItem(e) {
+    if (e.target.parentElement.classList.contains('remove-item')) {
+        removeItem(e.target.parentElement.parentElement);
+    }
+
+}
 
 
 
 // Remove
 function removeItem(e) {
-    if (e.target.parentElement.classList.contains('remove-item')){
+    // if (e.target.parentElement.classList.contains('remove-item')){
         if (confirm('Are you sure?')) {
-            e.target.parentElement.parentElement.remove();
+            item.remove();
+
+            removeItemFromStorage(item.textContent);
+            
             // when we delete items and there are no left
             checkUI();  
         }
-        
-       
-    }
+      
+    
      
 }
+
+function removeItemFromStorage(item) {
+    let itemsFromStorage = getItemFromStorage();
+
+    // Filter item to be removed
+    itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
+
+    // Re-set to local storage
+    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+}
+
+
+
+
 
 function clearItems(e) {
     while (itemList.firstChild) {
         itemList.removeChild(itemList.firstChild);
     }
 
+    //  Clear from localStorage
+    localStorage.removeItem('items');
+    
     checkUI();
 }
 
@@ -159,17 +184,18 @@ function checkUI() {
 }
 
 // Initialise app
+function init() {
+    // Event Listeners
+    itemForm.addEventListener('submit', onAddItemSubmit);
+    itemList.addEventListener('click', onClickItem);
+    clearBtn.addEventListener('click', clearItems);
+    itemFilter.addEventListener('input', filterItems);
+    document.addEventListener('DOMContentLoaded', displayItems)
 
 
-// Event Listeners
-itemForm.addEventListener('submit', onAddItemSubmit);
-itemList.addEventListener('click', removeItem);
-clearBtn.addEventListener('click', clearItems);
-itemFilter.addEventListener('input', filterItems);
-document.addEventListener('DOMContentLoaded', displayItems)
+    // when page loads 
+    checkUI();
+}
 
 
-
-
-// when page loads 
-checkUI();
+init();
