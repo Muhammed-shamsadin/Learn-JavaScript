@@ -1,6 +1,6 @@
 // sfc -> Stateless Functional Component
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BlogList from './BlogList';
 
 
@@ -13,12 +13,22 @@ const Home = () => {
         { title: 'Welcome Ceremony', body: 'lorem ipsum...', author: 'yoa', id: 2},
         { title: 'Web devion', body: 'lorem ipsum...', author: 'moa', id: 3},
     ]);
-    
+     
+    const handleDelete = (id) => {
+        const newBlogs = blogs.filter(blog => blog.id !== id);
+        setBlogs(newBlogs)
+    }
+
+    // useEffect for fetching data
+    // useEffect(() => {
+    //     console.log('useEffect run')
+    // });
+
 
     return ( 
         <div className="home">
-            <BlogList blogs={blogs} title="All Blogs!"/>
-            <BlogList blogs={blogs.filter((blog) => blog.author === 'moa')} title="Mario's Blogs!"/>
+            <BlogList blogs={blogs} title="All Blogs!" handleDelete={ handleDelete }/>
+            {/* <BlogList blogs={blogs.filter((blog) => blog.author === 'moa')} title="Mario's Blogs!"/> */}
 
         </div>
      );
