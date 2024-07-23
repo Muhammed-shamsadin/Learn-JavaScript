@@ -2,32 +2,41 @@
 
 import { useState, useEffect } from 'react';
 import BlogList from './BlogList';
-
+import useFetch from './useFetch';
 
 
 
 
 const Home = () => {
-    const [blogs, setBlogs] = useState([
-        { title: 'My new website', body: 'lorem ipsum...', author: 'moa', id: 1},
-        { title: 'Welcome Ceremony', body: 'lorem ipsum...', author: 'yoa', id: 2},
-        { title: 'Web devion', body: 'lorem ipsum...', author: 'moa', id: 3},
-    ]);
+    const { data: blogs, isPending, error } = useFetch('http://localhost:8000/blogs')
+
+ 
+    // use Effect Dependency 
+    // const [name, setName] = useState('mario');
      
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs)
-    }
+    // const handleDelete = (id) => {
+    //     const newBlogs = blogs.filter(blog => blog.id !== id);
+    //     setBlogs(newBlogs);
+    // }
 
     // useEffect for fetching data
     // useEffect(() => {
-    //     console.log('useEffect run')
-    // });
+    //     console.log('use Effect run');  
+    //     console.log(name);
+    // }, [name]);                 //  useEffect Dependency where the use Effect is dependt on the name state
+
+
+
 
 
     return ( 
         <div className="home">
-            <BlogList blogs={blogs} title="All Blogs!" handleDelete={ handleDelete }/>
+            { error && <div> {error} </div>}
+            { isPending && <div> Loading...</div> }
+            { blogs && <BlogList blogs={blogs} title="All Blogs!" /> }
+            
+            {/* <button onClick={() => setName('luigi')}> Change name </button>
+            <p> { name } </p> */}
             {/* <BlogList blogs={blogs.filter((blog) => blog.author === 'moa')} title="Mario's Blogs!"/> */}
 
         </div>
