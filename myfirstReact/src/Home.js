@@ -1,6 +1,5 @@
 // sfc -> Stateless Functional Component
 
-import { useState, useEffect } from 'react';
 import BlogList from './BlogList';
 import useFetch from './useFetch';
 
