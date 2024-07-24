@@ -1,0 +1,28 @@
+{
+  "blogs": [
+    {
+      "id": "d07e",
+      "title": "Midnights",
+      "body": "sknvbsfjbskjvsv ssv\nsvlksbjsfbvksbvjsl\nvsvs\nvsvsjvbsjkvsbbbbbbbbkjrgbr",
+      "author": "mario"
+    },
+    {
+      "id": "e8f8",
+      "title": "The Rise of Artificial Intelligence in Everyday Life",
+      "body": "Artificial Intelligence (AI) has swiftly transitioned from a concept confined to science fiction to an integral part of our daily lives. From virtual assistants like Siri and Alexa to recommendation algorithms on Netflix and Spotify, AI is enhancing our personal and professional experiences. The rapid development in machine learning and natural language processing is pushing the boundaries of what AI can accomplish, making our lives more convenient and productive.",
+      "author": "mario"
+    },
+    {
+      "id": "12d9",
+      "title": "Sustainable Living: Small Changes for a Greener Planet",
+      "body": "Sustainable living is no longer a niche movement but a global necessity. By making small changes in our daily habits, we can collectively reduce our environmental footprint and promote a healthier planet. Simple actions like reducing plastic usage, conserving water, and embracing renewable energy sources can make a significant impact",
+      "author": "mario"
+    },
+    {
+      "id": "cd96",
+      "title": "The Future of Remote Work: Trends and Predictions",
+      "body": "The COVID-19 pandemic has dramatically shifted the landscape of work, making remote work a new norm for many industries. This transformation has brought about significant changes in how businesses operate and how employees perform their tasks. As we look to the future, it's evident that remote work is here to stay, with several trends and predictions shaping its evolution.",
+      "author": "mario"
+    }
+  ]
+}
