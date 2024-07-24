@@ -74,14 +74,14 @@
   margin: 20px 0;
 }
 
-/* .blog-details button {
+.blog-details button {
   background:rgb(250, 40, 75) ;
   color:  white;
   border: 0;
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
-} */
+}
 
 /* create new blog form */
 .create {
