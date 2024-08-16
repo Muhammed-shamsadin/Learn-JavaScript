@@ -10,6 +10,7 @@ app.use(express.json()); //req.body
 // POST - INSERT //
 // GET - SELECT  // 
 // PUT - UPDATE //
+// DELETE - DELETE //
 
 // ROUTES //
 
